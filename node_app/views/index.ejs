@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Cycle Rocks!</title>
+</head>
+<body>
+  <h1>Full Cycle Rocks!</h1>
+  
+  <% if (typeof people === 'undefined' || people.length === 0) { %>
+    <p>There are no people to list.</p>
+  <% } else { %>
+    <ul>
+      <% people.forEach(function(person) { %>
+        <li><%= person.name %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+</body>
+</html>
