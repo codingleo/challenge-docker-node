@@ -27,6 +27,7 @@ services:
       - "3000:3000"
     volumes:
       - ./node_app:/app
+      - /app/node_modules
     networks:
       - node-network
     depends_on:
