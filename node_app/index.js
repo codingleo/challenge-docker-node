@@ -1,7 +1,6 @@
-import { faker } from '@faker-js/faker'
-import ejs from 'ejs'
-import express from 'express'
-import mysql from 'mysql'
+const ejs = require('ejs')
+const express = require('express')
+const mysql = require('mysql')
 
 const config = {
   host: 'db',
@@ -15,7 +14,6 @@ const connection = mysql.createConnection(config)
 connection.query('CREATE DATABASE IF NOT EXISTS nodedb')
 connection.query('USE nodedb')
 connection.query('CREATE TABLE IF NOT EXISTS people (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))')
-connection.query(`INSERT INTO people(name) values("${faker.person.fullName()}")`)
 
 const app = express()
 
@@ -24,7 +22,12 @@ app.set('view engine', 'ejs');
 
 app.set('views', './views');
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+  const id = randomIntFromInterval(1, 10)
+  const user = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+  const userJson = await user.json()
+
+  connection.query(`INSERT INTO people (name) VALUES ('${userJson.name}')`)
   connection.query('SELECT * FROM people', (err, rows) => {
     if (err) {
       console.log(err)
@@ -39,3 +42,7 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
   console.log('Server is up on port 3000')
 })
+
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}

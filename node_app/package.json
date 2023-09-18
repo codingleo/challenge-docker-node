@@ -1,18 +1,17 @@
 {
-  "name": "nginx-node",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "bun-types": "latest"
+  "name": "node_app",
+  "version": "1.0.0",
+  "description": "To install dependencies:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
-    "@faker-js/faker": "^8.0.2",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "html": "^1.0.0",
     "mysql": "^2.18.1"
   }
 }
