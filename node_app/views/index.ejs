@@ -11,6 +11,7 @@
   <% if (typeof people === 'undefined' || people.length === 0) { %>
     <p>There are no people to list.</p>
   <% } else { %>
+    <h2>People list</h2>
     <ul>
       <% people.forEach(function(person) { %>
         <li><%= person.name %></li>
